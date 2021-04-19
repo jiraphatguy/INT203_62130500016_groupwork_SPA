@@ -1,6 +1,6 @@
 <template>
 <div class="mb-10">
-  <div class="container w-3/5 p-8 mx-auto border rounded-lg mt-10 bg-white">
+  <div class="container w-3/5 p-8 mx-auto rounded-lg mt-10 bg-white shadow-md">
     <span class="">
       <span class="text-xl text-bold">IZ*ONE</span> was formed through the
       reality competition show Produce 48, which aired on Mnet from June 15 to
@@ -21,7 +21,7 @@
       ></iframe>
     </div>
   </div>
-  <div class="container w-3/5 p-8 mx-auto mt-10 border rounded-lg bg-white">
+  <div class="container w-3/5 p-8 mx-auto mt-10 rounded-lg bg-white shadow-md">
     <span> 
         <span class="text-xl font-bold"> IZ*ONE - Parallel Universe (Special Video)</span>
     </span>
