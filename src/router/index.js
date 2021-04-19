@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Member from '../views/Member.vue'
-
+import Album from '../views/Album.vue'
 
 const routes = [
   {
@@ -15,7 +15,9 @@ const routes = [
     component: Member
   },
   {
-    path : ''
+    path: '/album',
+    name: 'Album',
+    component: Album
   }
   
 ]

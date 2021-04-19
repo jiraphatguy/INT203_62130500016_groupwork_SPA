@@ -1,5 +1,5 @@
 <template>
-<div class="">
+<div class="mb-10">
   <div class="container w-3/5 p-8 mx-auto border rounded-lg mt-10 bg-white">
     <span class="">
       <span class="text-xl text-bold">IZ*ONE</span> was formed through the

@@ -1,6 +1,8 @@
 <template>
-  <Navbar />
-  <router-view />
+  <div class="mb-10">
+    <Navbar />
+    <router-view />
+  </div>
 </template>
 <script>
 import Navbar from "@/components/Nav.vue";
@@ -14,6 +16,9 @@ export default {
 <style >
 body {
   background-color: #fce7f3;
-  /* margin-top: 10px; */
+  margin-bottom: 10px;
+}
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>
