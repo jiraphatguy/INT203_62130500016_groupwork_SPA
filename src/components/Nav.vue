@@ -13,7 +13,7 @@
             />
           </div>
           <div
-            class="flex-1 items-center justify-center sm:block pl-96 ml-96 mt-1.5"
+            class="flex-1 items-center justify-center sm:block pl-96 ml-72 mt-1.5"
           >
             <div class="flex space-x-4">
               <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
@@ -35,6 +35,12 @@
                 to="/Album"
                 class="text-white hover:bg-pink-300 px-3 py-2 rounded-md text-sm font-medium"
                 >Albums</router-link
+              >
+
+              <router-link
+                to="/Feedback"
+                class="text-white hover:bg-pink-300 px-3 py-2 rounded-md text-sm font-medium"
+                >Feedback</router-link
               >
             </div>
           </div>

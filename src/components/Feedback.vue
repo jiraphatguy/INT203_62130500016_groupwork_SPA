@@ -2,28 +2,17 @@
   <div>
     <div class="showFeedback">
       <div class="mt-16 ml-20 font-bold text-2xl text-gray-700">Feedback</div>
-      <div class="lists">
+      <div class="lists flex flex-wrap space-x-5 justify-center">
         <div
-          class="list w-1/5 p-8 mx-auto mt-10 shadow-md rounded-lg bg-white text-gray-800"
+          class="list w-1/5 p-8 shadow-md rounded-lg bg-white text-gray-800 flex flex-col mt-10"
           v-for="result in feedbackResults"
           :key="result.id"
-          @click="editSurvey(result.id)"
         >
           <div class="content font-semibold">
-            <span class="text-sm">
-              <i class="fas fa-edit" @click="editSurvey(result.id)"></i>
-              <span
-                @click="deleteFeedback(result.id)"
-                class="rounded-lg float-right p-1 px-2.5 bg-pink-500 text-white hover:bg-pink-800"
-                >x</span
-              >
-            </span>
-            <br />
-
             {{ result.fname }} {{ result.lname }}
 
-            <p><span>"</span> {{ result.msg }} <span>"</span></p>
-            <h5>- {{ result.fname }} -</h5>
+            <p class="text-3xl mt-2"><span>"</span> {{ result.msg }} <span>"</span></p>
+            <p class="mt-5 text-gray-400">- {{ result.fname }} -</p>
           </div>
           <div class="isEdit" v-if="isEdit">
             <form @submit.prevent="editSubmit(result)">
@@ -31,24 +20,44 @@
                 <textarea
                   maxlength="50"
                   v-model="newMsg"
-                  cols="30"
-                  rows="10"
+                  cols="20"
+                  rows="5"
                   placeholder="message"
                   required
+                  class="bg-gray-100 rounded px-4 py-2 mb-4 shadow-md"
                 ></textarea>
               </div>
-              <div class="button">
-                <button type="submit">edit</button>
-              </div>
+              <button
+                    type="submit"
+                    class="rounded-lg bg-pink-500 text-white hover:bg-pink-800 p-2 shadow-md"
+                  >
+                    confirm edit
+                  </button>
             </form>
           </div>
+          <div class=" mt-16">
+                <button
+                  class=" rounded-lg bg-pink-500 text-white hover:bg-pink-800 p-2 shadow-md"
+                  @click="editSurvey"
+                  v-if="isEdit===false"
+                >
+                  Edit
+                </button>
+              <button
+                @click="deleteFeedback(result.id)"
+                v-if="isEdit===false"
+                class="rounded-lg float-right p-2 px-2.5 bg-pink-500 text-white hover:bg-pink-800"
+                >Delete</button
+              >
+                  
+              </div>
         </div>
       </div>
     </div>
 
     <form @submit.prevent="addFeedback">
       <div
-        class="container w-2/5 p-8 mx-auto mt-10 shadow-md rounded-lg bg-white"
+        class="container w-2/5 p-8 mx-auto mt-20 shadow-md rounded-lg bg-white"
       >
         <span class="font-bold text-xl text-gray-700"> Send a feedback! </span>
         <div class="grid gap-4 mt-5">
@@ -134,7 +143,10 @@ export default {
       const data = await res.json();
       return data;
     },
-     async deleteFeedback(id) {
+    editSurvey() {
+      this.isEdit = true;
+    },
+    async deleteFeedback(id) {
       if (confirm(`Are you sure to delete ?`)) {
         const res = await fetch(`${this.url}/${id}`, {
           method: "DELETE",
@@ -146,20 +158,20 @@ export default {
           : alert("Error to delete feedback");
       }
     },
-        async editSubmit(editingData) {
+    async editSubmit(editingData) {
       const res = await fetch(`${this.url}/${editingData.id}`, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-type': 'application/json'
+          "Content-type": "application/json",
         },
         body: JSON.stringify({
           fname: editingData.fname,
           lname: editingData.lname,
           email: editingData.email,
-          msg: this.newMsg
-        })
-      })
-      const data = await res.json()
+          msg: this.newMsg,
+        }),
+      });
+      const data = await res.json();
       this.feedbackResults = this.feedbackResults.map((feedback) =>
         feedback.id === data.id
           ? {
@@ -167,43 +179,42 @@ export default {
               fname: data.fname,
               lname: data.lname,
               email: data.email,
-              msg: data.msg
+              msg: data.msg,
             }
           : feedback
-      )
-      this.newMsg=''
-      this.isEdit = false
+      );
+      this.newMsg = "";
+      this.isEdit = false;
     },
-  async addFeedback(){
-        const newFeedback = {
-            fname: this.fname,
-            lname: this.lname,
-            email: this.email,
-            msg: this.msg
-        }
-        const res = await fetch(this.url,{
-          method: 'POST',
-          headers:{
-            'Content-type': 'application/json'
-          },
-          body: JSON.stringify({
-            fname: newFeedback.fname,
-            lname: newFeedback.lname,
-            email: newFeedback.email,
-            msg: newFeedback.msg
-          })
-        })
-        const data = await res.json()
-        this.feedbackResults = [...this.feedbackResults,data]
-        this.fname = ''
-        this.lname = ''
-        this.email = ''
-        this.msg = ''
-      }
+    async addFeedback() {
+      const newFeedback = {
+        fname: this.fname,
+        lname: this.lname,
+        email: this.email,
+        msg: this.msg,
+      };
+      const res = await fetch(this.url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          fname: newFeedback.fname,
+          lname: newFeedback.lname,
+          email: newFeedback.email,
+          msg: newFeedback.msg,
+        }),
+      });
+      const data = await res.json();
+      this.feedbackResults = [...this.feedbackResults, data];
+      this.fname = "";
+      this.lname = "";
+      this.email = "";
+      this.msg = "";
+    },
   },
   async created() {
     this.feedbackResults = await this.fetchFeedbackResult();
   },
-  
 };
 </script>
