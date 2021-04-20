@@ -1,14 +1,15 @@
 <template>
 <div class="mb-10">
   <div class="container w-3/5 p-8 mx-auto rounded-lg mt-10 bg-white shadow-md">
-    <span class="">
+    <span class="text-2xl font-bold">INFO</span><br>
+    <p class="mt-3 text-inde">
       <span class="text-xl text-bold">IZ*ONE</span> was formed through the
       reality competition show Produce 48, which aired on Mnet from June 15 to
       August 31, 2018. The show was billed as a collaboration between the Korean
       Produce 101 franchise and the Japanese idol AKB48 Group. Out of an initial
       ninety-six contestants, the final twelve were announced via live
       television broadcast.
-    </span>
+    </p>
     <div class="mt-5 flex justify-center">
       <iframe
         width="560"
