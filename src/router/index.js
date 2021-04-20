@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Member from '../views/Member.vue'
 import Album from '../views/Album.vue'
+import Feedback from '../components/Feedback.vue'
 
 const routes = [
   {
@@ -18,8 +19,12 @@ const routes = [
     path: '/album',
     name: 'Album',
     component: Album
+  },
+  {
+    path: '/feedback',
+    name: 'Feedback',
+    component: Feedback
   }
-  
 ]
 
 const router = createRouter({
